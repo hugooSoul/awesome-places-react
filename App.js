@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default class App extends React.Component {
 
@@ -16,12 +16,15 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Awesome Places</Text>
-        <TextInput
-          style={{width: 300, height: 25, color: 'white'}}
-          placeholder="An awesome place"
-          value={this.state.placeName}
-          onChangeText={this.placeNameChangedHandler} />
+      <Text style={styles.welcome}>Awesome Places</Text>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.placeInput}
+            placeholder="An awesome place"
+            value={this.state.placeName}
+            onChangeText={this.placeNameChangedHandler} />
+          <Button title='Add' style={styles.placeButton} />
+        </View>
       </View>
     );
   }
@@ -30,13 +33,25 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 26,
+    padding: 28,
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
-  text: {
+  welcome: {
     color: 'black',
-    fontSize: 16,
+    fontSize: 17,
+  },
+  inputContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  placeInput: {
+    width: '70%',
+  },
+  placeButton: {
+    width: '30%'
   }
 });
