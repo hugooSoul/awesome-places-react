@@ -3,12 +3,14 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
-import placeImage from './src/assets/beach.jpg';
+import PlaceDetail from './src/components/PlaceDetail/PlaceDetail';
+//import placeImage from './src/assets/beach.jpg';
 
 export default class App extends React.Component {
 
   state = {
-    places: []
+    places: [],
+    selectedPlace: null
   }
 
   placeAddedHandler = placeName => {
@@ -17,8 +19,20 @@ export default class App extends React.Component {
         places: prevState.places.concat({
           key: Math.random().toString(36).substr(2, 9),
           name: placeName,
-          image: placeImage
+          image: {
+            uri: "https://media-cdn.tripadvisor.com/media/photo-s/0e/85/48/e6/seven-mile-beach-grand.jpg"
+          }
         }),
+      };
+    });
+  }
+
+  placeSelectedHandler = key => {
+    this.setState(prevState => {
+      return {
+        selectedPlace: prevState.places.find(place => {
+          return place.key === key;
+        })
       };
     });
   }
@@ -27,9 +41,16 @@ export default class App extends React.Component {
     this.setState(prevState => {
       return {
         places: prevState.places.filter(place => {
-          return place.key !== key;
-        })
+          return place.key !== prevState.selectedPlace.key;
+        }),
+        selectedPlace: null
       };
+    });
+  }
+
+  modalClosedHandler = () => {
+    this.setState({
+      selectedPlace: null
     });
   }
 
@@ -37,9 +58,16 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Awesome Places</Text>
-        <PlaceInput onPlaceAdded={this.placeAddedHandler} />
+        <PlaceDetail
+          selectedPlace={this.state.selectedPlace}
+          onItemDeleted={this.placeDeletedHandler}
+          onModalClosed={this.modalClosedHandler} />
+        <PlaceInput
+          onPlaceAdded={this.placeAddedHandler} />
 
-        <PlaceList places={this.state.places} onItemDeleted={this.placeDeletedHandler} />
+        <PlaceList
+          places={this.state.places}
+          onItemSelected={this.placeSelectedHandler} />
       </View>
     );
   }
