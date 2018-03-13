@@ -22,12 +22,12 @@ const PlaceDetail = props => {
         <View>
           <TouchableOpacity onPress={props.onItemDeleted}>
             <View style={styles.buttonDelete}>
-              <Icon size={30} name="md-trash" color="red" />
+              <Icon size={30} name="ios-trash-outline" color="red" />
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={props.onModalClosed}>
             <View style={styles.buttonClose}>
-              <Icon size={30} name="md-close" color="blue" />
+              <Icon size={30} name="ios-close-outline" color="blue" />
             </View>
           </TouchableOpacity>
         </View>
