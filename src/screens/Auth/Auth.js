@@ -4,6 +4,8 @@ import startMainTabs from '../MainTabs/startMainTabs';
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
 import MainText from '../../components/UI/MainText/MainText';
+import ButtonWithBackground from '../../components/UI/Button/ButtonWithBackground';
+import DefaultButton from '../../components/UI/Button/DefaultButton';
 import backgroundImage from '../../assets/beach.jpg';
 
 class AuthScreen extends Component {
@@ -19,13 +21,13 @@ class AuthScreen extends Component {
             <MainText>
               <HeadingText>Please Log In</HeadingText>
             </MainText>
-            <Button title="Switch to Login" />
+            <DefaultButton onPress={() => alert("Hello")}>Switch to Login</DefaultButton>
             <View style={styles.inputContainer}>
               <DefaultInput placeholder="Username" style={styles.input} />
               <DefaultInput placeholder="Password" style={styles.input} />
               <DefaultInput placeholder="Confirm Password" style={styles.input} />
             </View>
-            <Button title="Login" onPress={this.loginHandler} />
+            <ButtonWithBackground onPress={this.loginHandler} color={'#379392'}>Login</ButtonWithBackground>
         </View>
       </ImageBackground>
     );
