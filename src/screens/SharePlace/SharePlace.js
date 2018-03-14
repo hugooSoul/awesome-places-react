@@ -11,6 +11,10 @@ import MainText from '../../components/UI/MainText/MainText';
 
 class SharePlaceScreen extends Component {
 
+  state = {
+    placeName: ''
+  };
+
   constructor(props) {
     super(props);
     this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
@@ -30,9 +34,17 @@ class SharePlaceScreen extends Component {
 
   }
 
-  placesAddedHandler = placeName => {
-    this.props.onAddPlace(placeName);
+  placeNameChangedHanlder = val => {
+    this.setState({
+      placeName: val
+    });
   }
+
+  placesAddedHandler = () => {
+    if(this.state.placeName.trim() !== "") {
+      this.props.onAddPlace(this.state.placeName);
+    }
+  };
 
   render () {
     return(
@@ -44,10 +56,10 @@ class SharePlaceScreen extends Component {
 
           <PickImage />
           <PickLocation />
-          <PlaceInput />
-          
+          <PlaceInput placeName={this.state.placeName} onChangeText={this.placeNameChangedHanlder} />
+
           <View style={styles.button}>
-            <Button title="Share the place" />
+            <Button title="Share the place" onPress={this.placesAddedHandler} />
           </View>
         </View>
       </ScrollView>
