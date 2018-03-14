@@ -3,11 +3,11 @@ import { View, Text, TextInput, Button, StyleSheet, ScrollView, Image } from 're
 import { connect } from 'react-redux';
 
 import PlaceInput from '../../components/PlaceInput/PlaceInput';
+import PickImage from '../../components/PickImage/PickImage';
+import PickLocation from '../../components/PickLocation/PickLocation';
 import { addPlace } from '../../store/actions/index';
-import DefaultInput from '../../components/UI/DefaultInput/DefaultInput';
 import HeadingText from '../../components/UI/HeadingText/HeadingText';
 import MainText from '../../components/UI/MainText/MainText';
-import imagePlaceHolder from '../../assets/beach.jpg';
 
 class SharePlaceScreen extends Component {
 
@@ -41,17 +41,11 @@ class SharePlaceScreen extends Component {
           <MainText>
             <HeadingText>Share a place with us!</HeadingText>
           </MainText>
-          <View style={styles.placeholder}>
-            <Image source={imagePlaceHolder} style={styles.previewImage} />
-          </View>
-          <View style={styles.button}>
-            <Button title="Pick Image" />
-          </View>
-          <View style={styles.placeholder}><Text>Map</Text></View>
-          <View style={styles.button}>
-            <Button title="Locate Me" />
-          </View>
-          <DefaultInput placeholder="Place Name" />
+
+          <PickImage />
+          <PickLocation />
+          <PlaceInput />
+          
           <View style={styles.button}>
             <Button title="Share the place" />
           </View>
@@ -66,20 +60,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center'
   },
-  placeholder: {
-    borderWidth: 1,
-    borderColor: 'black',
-    backgroundColor: '#eee',
-    width: '80%',
-    height: 120
-  },
-  button: {
-    margin: 8
-  },
-  previewImage: {
-    width: '100%',
-    height: '100%'
-  }
 });
 
 mapDispatchToProps = dispatch => {
