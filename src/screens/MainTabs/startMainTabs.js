@@ -20,7 +20,8 @@ const startMainTabs = () => {
             leftButtons: [
               {
                 icon: sources[2],
-                title: "Menu"
+                title: "Menu",
+                id: "sideDrawerToggle"
               }
             ]
           }
@@ -34,7 +35,8 @@ const startMainTabs = () => {
             leftButtons: [
               {
                 icon: sources[2],
-                title: "Menu"
+                title: "Menu",
+                id: "sideDrawerToggle"
               }
             ]
           }
